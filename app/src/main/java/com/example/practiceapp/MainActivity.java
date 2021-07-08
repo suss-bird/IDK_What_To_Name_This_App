@@ -33,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.songsHolder);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapterSongItem = new Adapter_SongItem();
+        adapterSongItem = new Adapter_SongItem(this);
         recyclerView.setAdapter(adapterSongItem);
+
 
     }
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             while (musicCursor.moveToNext()) {
                 String path = musicCursor.getString(musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DATA));
                 String name = musicCursor.getString(musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE));
-                System.out.println(path);
+                System.out.println(name);
                 songs.add(new Song(name, path));
             }
         }
