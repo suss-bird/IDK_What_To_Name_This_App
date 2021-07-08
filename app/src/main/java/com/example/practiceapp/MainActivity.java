@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
         ContentResolver musicResolver = getContentResolver();
         Uri musicUri = android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor musicCursor = musicResolver.query(musicUri, null, null, null, null);
-
+        int count = 0;
 
         if(musicCursor != null) {
             while (musicCursor.moveToNext()) {
                 String path = musicCursor.getString(musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.DATA));
                 String name = musicCursor.getString(musicCursor.getColumnIndex(android.provider.MediaStore.Audio.Media.TITLE));
                 System.out.println(name);
-                songs.add(new Song(name, path));
+                songs.add(new Song(count, name, path));
             }
         }
         assert musicCursor != null;

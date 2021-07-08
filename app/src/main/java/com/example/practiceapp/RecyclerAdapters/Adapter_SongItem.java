@@ -49,6 +49,7 @@ public class Adapter_SongItem extends RecyclerView.Adapter<Adapter_SongItem.View
             intent.putExtra("SongName", MainActivity.songs.get(position).getSongName());
 
             intent.putExtra("SongPath", MainActivity.songs.get(position).getPath());
+            intent.putExtra("currentID", MainActivity.songs.get(position).getID());
             context.startActivity(intent);
         });
     }
