@@ -12,12 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.practiceapp.DataModel.Song;
 import com.example.practiceapp.MainActivity;
 import com.example.practiceapp.R;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.ArrayList;
+
 
 public class Activity_PlayScreen extends AppCompatActivity {
     boolean playPause;
@@ -25,13 +26,24 @@ public class Activity_PlayScreen extends AppCompatActivity {
     int save;
     int currentID;
     String path;
+//    ArrayList<Song> songs;
+    public Activity_PlayScreen() {
+
+    }
+
+    public Activity_PlayScreen(ArrayList<Song> songs) {
+//        this.songs = songs;
+    }
+
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_screen);
 
         ((TextView) (findViewById(R.id.txtVw_SongName))).setText(getIntent().getStringExtra("SongName"));
-
+        Bundle args = getIntent().getBundleExtra("songsList");
+//        songs = (ArrayList<Song>) args.getSerializable("songs");
+        System.out.println(MainActivity.songs.size());
         path = getIntent().getStringExtra("SongPath");
         currentID = getIntent().getIntExtra("currentID", 0);
         mediaPlayer = new MediaPlayer();
@@ -127,7 +139,7 @@ public class Activity_PlayScreen extends AppCompatActivity {
 
     public void nextSong() {
         currentID++;
-        if(currentID == MainActivity.songs.size()-1) {
+        if(currentID == MainActivity.songs.size()) {
             currentID = 0;
             path = MainActivity.songs.get(currentID).getPath();
             System.out.println("Currently playing " + path);

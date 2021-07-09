@@ -1,5 +1,7 @@
 package com.example.practiceapp.DataModel;
 
+import java.io.Serializable;
+
 public class Song {
     int id;
     String songName;
